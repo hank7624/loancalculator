@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hank7624.github.io/loancalculator/sitemap.xml
+
+# 禁止爬取构建文件
+Disallow: /assets/
+Disallow: /dist/
