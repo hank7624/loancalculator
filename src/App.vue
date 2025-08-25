@@ -26,19 +26,25 @@
         :class="['nav-tab', { active: activeTab === 'credit' }]"
         @click="activeTab = 'credit'"
       >
-        信貸/車貸計算
+        💰 信貸/車貸計算
       </button>
       <button 
         :class="['nav-tab', { active: activeTab === 'mortgage' }]"
         @click="activeTab = 'mortgage'"
       >
-        房貸計算
+        🏠 房貸計算
       </button>
       <button 
         :class="['nav-tab', { active: activeTab === 'rates' }]"
         @click="activeTab = 'rates'"
       >
         🏦 銀行利率對比
+      </button>
+      <button 
+        :class="['nav-tab', { active: activeTab === 'articles' }]" 
+        @click="activeTab = 'articles'"
+      >
+        📰 專欄文章
       </button>
     </nav>
 
@@ -58,6 +64,7 @@
         <CreditCalculator v-if="activeTab === 'credit'" />
         <MortgageCalculator v-if="activeTab === 'mortgage'" />
         <BankRateComparison v-if="activeTab === 'rates'" />
+        <Articles v-if="activeTab === 'articles'" />
       </div>
 
       <!-- 右側廣告 -->
@@ -118,6 +125,7 @@ import { ref, onMounted } from 'vue'
 import CreditCalculator from './components/CreditCalculator.vue'
 import MortgageCalculator from './components/MortgageCalculator.vue'
 import BankRateComparison from './components/BankRateComparison.vue'
+import Articles from './components/Articles.vue'
 import PrivacyPolicy from './components/PrivacyPolicy.vue'
 import TermsOfService from './components/TermsOfService.vue'
 import AboutUs from './components/AboutUs.vue'
@@ -129,6 +137,7 @@ export default {
     CreditCalculator,
     MortgageCalculator,
     BankRateComparison,
+    Articles,
     PrivacyPolicy,
     TermsOfService,
     AboutUs,

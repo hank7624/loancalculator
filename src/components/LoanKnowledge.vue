@@ -190,7 +190,7 @@ h1 {
 
 h2 {
   color: #2c3e50;
-  border-bottom: 3px solid #9b59b6;
+  border-bottom: 3px solid #90EE90;
   padding-bottom: 15px;
   margin-bottom: 30px;
   font-size: 1.8em;
@@ -213,8 +213,8 @@ h3 {
 .table-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  background: #9b59b6;
-  color: white;
+  background: #90EE90;
+  color: #2c3e50;
   font-weight: bold;
 }
 
@@ -274,7 +274,7 @@ h3 {
   padding: 15px;
   background: white;
   border-radius: 8px;
-  border-left: 4px solid #9b59b6;
+  border-left: 4px solid #90EE90;
 }
 
 .case-result {
@@ -309,8 +309,8 @@ h3 {
 }
 
 .article h3 {
-  color: #9b59b6;
-  border-bottom: 2px solid #9b59b6;
+  color: #90EE90;
+  border-bottom: 2px solid #90EE90;
   padding-bottom: 10px;
 }
 
@@ -331,8 +331,8 @@ h3 {
 
 .back-btn {
   display: inline-block;
-  background: #9b59b6;
-  color: white;
+  background: #90EE90;
+  color: #2c3e50;
   padding: 12px 30px;
   text-decoration: none;
   border-radius: 25px;
@@ -340,7 +340,7 @@ h3 {
 }
 
 .back-btn:hover {
-  background: #8e44ad;
+  background: #7DCE7D;
 }
 
 @media (max-width: 768px) {
