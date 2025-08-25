@@ -289,7 +289,7 @@ export default {
 }
 
 .subtitle {
-  color: #666;
+  color: white;
   font-size: 1.1em;
 }
 
@@ -355,9 +355,10 @@ export default {
 .rate-table-container {
   background: white;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: auto; /* 添加水平滾動 */
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   margin-bottom: 30px;
+  -webkit-overflow-scrolling: touch; /* iOS 平滑滾動 */
 }
 
 .rate-table {
@@ -507,15 +508,35 @@ export default {
   
   .rate-table {
     font-size: 14px;
+    min-width: 600px; /* 設置最小寬度，確保內容完整顯示 */
   }
   
   .rate-table th,
   .rate-table td {
     padding: 10px 8px;
+    white-space: nowrap; /* 防止文字換行 */
   }
   
   .bank-logo {
     font-size: 1.2em;
+  }
+  
+  /* 手機直立式優化 */
+  .rate-table-container {
+    margin: 0 -15px 30px -15px; /* 負邊距，讓滾動區域更寬 */
+    border-radius: 0; /* 手機上移除圓角 */
+  }
+  
+  /* 添加滾動提示 */
+  .rate-table-container::after {
+    content: '← 左右滑動查看更多 →';
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: #666;
+    font-size: 12px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
   }
 }
 </style>
