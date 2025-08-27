@@ -4,7 +4,7 @@
     <div class="ad-container ad-top">
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-client="ca-pub-9729139144169160"
            data-ad-slot="XXXXXXXXXX"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
@@ -54,7 +54,7 @@
       <aside class="ad-sidebar ad-left">
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-client="ca-pub-9729139144169160"
              data-ad-slot="XXXXXXXXXX"
              data-ad-format="vertical"></ins>
       </aside>
@@ -71,7 +71,7 @@
       <aside class="ad-sidebar ad-right">
         <ins class="adsbygoogle"
              style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-client="ca-pub-9729139144169160"
              data-ad-slot="XXXXXXXXXX"
              data-ad-format="vertical"></ins>
       </aside>
@@ -81,7 +81,7 @@
     <div class="ad-container ad-bottom">
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-client="ca-pub-9729139144169160"
            data-ad-slot="XXXXXXXXXX"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
