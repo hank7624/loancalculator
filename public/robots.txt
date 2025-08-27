@@ -4,6 +4,6 @@ Allow: /
 # Sitemap
 Sitemap: https://loancalc.com.tw/sitemap.xml
 
-# 禁止爬取构建文件
-Disallow: /assets/
-Disallow: /dist/
+# 允许所有爬虫访问
+Allow: /assets/
+Allow: /dist/
