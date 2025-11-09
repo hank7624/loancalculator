@@ -7,7 +7,8 @@
            data-ad-client="ca-pub-9729139144169160"
            data-ad-slot="XXXXXXXXXX"
            data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+           data-full-width-responsive="true">
+      </ins>
     </div>
 
     <!-- 主標題 -->
@@ -20,35 +21,24 @@
       <p>專業的信貸、車貸/房貸計算工具，支援多種還款方式</p>
     </header>
 
-    <!-- 導航標籤 -->
     <nav class="nav-tabs">
-      <button 
-        :class="['nav-tab', { active: activeTab === 'credit' }]"
-        @click="activeTab = 'credit'"
-      >
+      <button :class="['nav-tab', { active: homeTab } ]" @click="resetHome">
+        首頁
+      </button>
+      <button :class="['nav-tab', { active: activeTab === 'credit' }]" @click="openTab('credit')">
         💰 信貸/車貸計算
       </button>
-      <button 
-        :class="['nav-tab', { active: activeTab === 'mortgage' }]"
-        @click="activeTab = 'mortgage'"
-      >
+      <button :class="['nav-tab', { active: activeTab === 'mortgage' }]" @click="openTab('mortgage')">
         🏠 房貸計算
       </button>
-      <button 
-        :class="['nav-tab', { active: activeTab === 'rates' }]"
-        @click="activeTab = 'rates'"
-      >
+      <button :class="['nav-tab', { active: activeTab === 'rates' }]" @click="openTab('rates')">
         🏦 銀行利率對比
       </button>
-      <button 
-        :class="['nav-tab', { active: activeTab === 'articles' }]" 
-        @click="activeTab = 'articles'"
-      >
+      <button :class="['nav-tab', { active: activeTab === 'articles' }]" @click="openTab('articles')">
         📰 專欄文章
       </button>
     </nav>
 
-    <!-- 主要內容區域 -->
     <main class="main-content">
       <!-- 左側廣告 -->
       <aside class="ad-sidebar ad-left">
@@ -59,12 +49,53 @@
              data-ad-format="vertical"></ins>
       </aside>
 
-      <!-- 計算器組件 -->
       <div class="calculator-container">
+        <!-- 首頁四大圖示 -->
+        <div v-if="homeTab" class="home-feature-grid">
+          <div class="feature-item" v-for="f in features" :key="f.key" @click="openTab(f.key)">
+            <div class="feature-icon">{{ f.icon }}</div>
+            <div class="feature-title">{{ f.title }}</div>
+            <div class="feature-desc">{{ f.desc }}</div>
+          </div>
+        </div>
+        <!-- 最新貸款資訊區 -->
+        <div v-if="homeTab" class="latest-news">
+          <h3>最新貸款資訊</h3>
+          <ul>
+            <li v-for="news in latestNews" :key="news.id">
+              <strong @click="gotoArticle(news.id)" class="article-link">{{news.title}}</strong> <span class="date">({{ news.date }})</span>
+              <p>{{ news.preview }}</p>
+              <a @click.prevent="gotoArticle(news.id)" class="more-link">閱讀完整內容 →</a>
+            </li>
+          </ul>
+        </div>
+        <!-- 隨機專欄摘要 -->
+        <div v-if="homeTab && randomArticle" class="random-article">
+          <h3>精選專欄</h3>
+          <p>
+            <strong>
+              <a href="#" class="article-link" @click.prevent="gotoArticle(randomArticle.id)">
+                {{ randomArticle.title }}
+              </a>
+            </strong>
+          </p>
+          <div class="summary">{{ randomArticle.preview }}</div>
+          <p style="margin-top:.6rem">
+            <a href="#" class="more-link" @click.prevent="gotoArticle(randomArticle.id)">閱讀完整內容 →</a>
+          </p>
+        </div>
+
+        <!-- 個別功能頁 -->
         <CreditCalculator v-if="activeTab === 'credit'" />
         <MortgageCalculator v-if="activeTab === 'mortgage'" />
         <BankRateComparison v-if="activeTab === 'rates'" />
-        <Articles v-if="activeTab === 'articles'" />
+        <Articles 
+          v-if="activeTab==='articles'"
+          :selected-id="selectedArticleId"
+          @article-selected="handleArticleSelected"
+          :articles="articles"
+          @close="handleArticleModalClose"
+        />
       </div>
 
       <!-- 右側廣告 -->
@@ -93,14 +124,12 @@
         <div class="footer-main">
           <p>&copy; 2024 免費貸款計算機. 本工具僅供參考，實際貸款條件請以銀行公告為準。</p>
         </div>
-        
         <div class="footer-links">
           <div class="link-group">
             <h4>法律條款</h4>
             <a href="#" @click.prevent="showPrivacyPolicy">隱私政策</a>
             <a href="#" @click.prevent="showTermsOfService">使用條款</a>
           </div>
-          
           <div class="link-group">
             <h4>關於我們</h4>
             <a href="#" @click.prevent="showAboutUs">關於我們</a>
@@ -121,7 +150,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import CreditCalculator from './components/CreditCalculator.vue'
 import MortgageCalculator from './components/MortgageCalculator.vue'
 import BankRateComparison from './components/BankRateComparison.vue'
@@ -130,6 +159,7 @@ import PrivacyPolicy from './components/PrivacyPolicy.vue'
 import TermsOfService from './components/TermsOfService.vue'
 import AboutUs from './components/AboutUs.vue'
 import LoanKnowledge from './components/LoanKnowledge.vue'
+import articlesData from './components/articles-home-data.js'
 
 export default {
   name: 'App',
@@ -144,33 +174,102 @@ export default {
     LoanKnowledge
   },
   setup() {
-    const activeTab = ref('credit')
+    const homeTab = ref(true)
+    const activeTab = ref('')
     const showModal = ref(false)
     const currentModal = ref(null)
+    // 引用所有專欄文章
+    const articles = ref(articlesData)
+    // 首頁最新2則，按日期先後
+    const latestNews = computed(() => {
+      return [...articles.value]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0,2);
+    })
+    // 首頁隨機精選摘要
+    const randomArticle = computed(() => {
+      const pool = articles.value;
+      return pool[Math.floor(Math.random() * pool.length)]
+    })
 
+    // 四大功能設定
+    const features = [
+      {
+        key: 'credit',
+        icon: '💰',
+        title: '信貸/車貸計算',
+        desc: '快速計算信貸/車貸 月付金額與總利息',
+      },
+      {
+        key: 'mortgage',
+        icon: '🏠',
+        title: '房貸計算',
+        desc: '支援多種利率、寬限期，還款明細清晰',
+      },
+      {
+        key: 'rates',
+        icon: '🏦',
+        title: '銀行利率對比',
+        desc: '即時更新利率，挑選適合自己的貸款',
+      },
+      {
+        key: 'articles',
+        icon: '📰',
+        title: '專欄文章',
+        desc: '專家解析，貸款大小事不遺漏',
+      },
+    ]
+
+    // ===== 以下為原有 modal、tab控制，微調如下 =====
     const showPrivacyPolicy = () => {
       currentModal.value = 'PrivacyPolicy'
       showModal.value = true
     }
-
     const showTermsOfService = () => {
       currentModal.value = 'TermsOfService'
       showModal.value = true
     }
-
     const showAboutUs = () => {
       currentModal.value = 'AboutUs'
       showModal.value = true
     }
-
     const showLoanKnowledge = () => {
       currentModal.value = 'LoanKnowledge'
       showModal.value = true
     }
-
     const closeModal = () => {
       showModal.value = false
       currentModal.value = null
+    }
+    // 首頁模式與tab切換
+    function openTab(key) {
+      homeTab.value = false
+      activeTab.value = key
+      selectedArticleId.value = null; // 切 tab 一律清空
+    }
+    function resetHome() {
+      homeTab.value = true
+      activeTab.value = ''
+      selectedArticleId.value = null; // 回首頁也清空
+    }
+    // ===== 一篇專欄連結事件 =====
+    // 預設專欄articles分頁需能選中（可透過事件、全局或狀態管理給子元件，也可簡易以本地提供) 下面提供本地方案
+    const selectedArticleId = ref(null)
+    function gotoArticle(id) {
+      homeTab.value = false
+      activeTab.value = 'articles'
+      selectedArticleId.value = id
+    }
+
+    // for App傳到Articles元件
+    function handleArticleSelected(id) {
+      selectedArticleId.value = id
+      activeTab.value = 'articles'
+      homeTab.value = false
+    }
+
+    function handleArticleModalClose() {
+      selectedArticleId.value = null;
     }
 
     onMounted(() => {
@@ -179,128 +278,95 @@ export default {
         window.adsbygoogle.push({})
       }
     })
-
     return {
+      homeTab,
       activeTab,
-      showModal,
-      currentModal,
+      features,
+      articles,
+      latestNews,
+      randomArticle,
       showPrivacyPolicy,
       showTermsOfService,
       showAboutUs,
       showLoanKnowledge,
-      closeModal
+      showModal,
+      currentModal,
+      closeModal,
+      openTab,
+      resetHome,
+      gotoArticle,
+      selectedArticleId,
+      handleArticleSelected,
+      handleArticleModalClose
     }
   }
 }
 </script>
 
 <style scoped>
-/* 頁腳樣式 */
-.footer {
-  background: #2c3e50;
-  color: white;
-  padding: 30px 0;
-  margin-top: 40px;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.footer-main {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.footer-main p {
-  margin: 0;
-  color: #bdc3c7;
-}
-
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  justify-items: center;
-}
-
-.link-group h4 {
-  color: #ecf0f1;
-  margin-bottom: 15px;
-  font-size: 1.1em;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 5px;
-}
-
-.link-group a {
-  display: block;
-  color: #bdc3c7;
-  text-decoration: none;
-  margin-bottom: 8px;
-  transition: color 0.3s ease;
-}
-
-.link-group a:hover {
-  color: #3498db;
-}
-
-/* 模態框樣式 */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+.home-feature-grid {
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 20px;
+  align-items: stretch;
+  gap: 2rem;
+  margin: 2rem 0 0 0;
 }
-
-.modal-content {
-  background: white;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
+.feature-item {
   cursor: pointer;
-  z-index: 1001;
-  transition: background 0.3s ease;
+  background: #f4f8fb;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #ade1c2;
+  padding: 2rem 1.2rem 1.5rem 1.2rem;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative;
 }
-
-.modal-close:hover {
-  background: #c0392b;
+.feature-item:hover {
+  transform: translateY(-8px) scale(1.045);
+  box-shadow: 0 12px 32px rgba(43,120,64,0.12);
 }
-
-/* 響應式設計 */
-@media (max-width: 768px) {
-  .footer-links {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  
-  .modal-content {
-    max-width: 95%;
-    max-height: 95%;
-  }
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
+.feature-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: .6rem;
+}
+.feature-desc {
+  color: #698972;
+  font-size: .99em;
+  margin-bottom: .2rem;
+}
+.latest-news {
+  margin-top: 3rem;
+  background: #fafcf6;
+  border-left: 5px solid #5ac16e;
+  padding: 1.2rem 1.5rem 1rem 2.2rem;
+  border-radius: 0 10px 10px 0;
+}
+.latest-news h3 {
+  margin-top: 0;
+  color: #348760;
+  font-weight: bold;
+}
+.latest-news ul { padding-left: 1.2rem; }
+.latest-news li { margin-bottom: 1.4em; }
+.latest-news .date { color: #a2adb0; font-size: .98em; margin-left: .15em; }
+.random-article {
+  margin: 2.5rem auto 0 auto;
+  max-width: 730px;
+  background: #fffbe5;
+  border-radius: 18px;
+  box-shadow: 0 1px 8px #e1e2ae;
+  padding: 1.7rem 2rem;
+}
+.random-article h3 {
+  color: #bf8a00;
+  font-weight: bold;
+  margin-bottom: 0.7em;
+}
+.random-article .summary { margin-top: .5em; color: #444; }
 </style>

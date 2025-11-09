@@ -581,15 +581,18 @@
                  <th>剩餘本金</th>
                </tr>
              </thead>
-             <tbody>
-               <tr v-for="payment in calculationResult.schedule" :key="payment.period">
-                 <td>{{ payment.period }}</td>
-                 <td>{{ formatCurrency(payment.payment) }}</td>
-                 <td>{{ formatCurrency(payment.principal) }}</td>
-                 <td>{{ formatCurrency(payment.interest) }}</td>
-                 <td>{{ formatCurrency(payment.remainingBalance) }}</td>
-               </tr>
-             </tbody>
+            <tbody>
+              <tr v-for="payment in calculationResult.schedule" :key="payment.period">
+                <td>
+                  {{ payment.period }}
+                  <span v-if="formData.gracePeriod > 0 && payment.period <= formData.gracePeriod * 12" class="grace-period-label">寬限期</span>
+                </td>
+                <td>{{ formatCurrency(payment.payment) }}</td>
+                <td>{{ formatCurrency(payment.principal) }}</td>
+                <td>{{ formatCurrency(payment.interest) }}</td>
+                <td>{{ formatCurrency(payment.remainingBalance) }}</td>
+              </tr>
+            </tbody>
            </table>
          </div>
          <div class="print-section">
@@ -749,14 +752,18 @@ export default {
            secondYearPayment = firstYearPayment
            thirdYearPayment = firstYearPayment
            
-           // 計算總付款（寬限期只繳利息 + 還款期間繳本息）
-           const graceInterest = principal * monthlyRate * graceMonths
-           const paymentTotal = firstYearPayment * actualPaymentMonths
-           totalPayment = graceInterest + paymentTotal
-           totalInterest = totalPayment - principal
-           
-           // 生成還款明細（包含寬限期）
-           schedule = generateEqualPaymentScheduleWithGrace(principal, monthlyRate, totalMonths, graceMonths, firstYearPayment)
+          // 生成還款明細（包含寬限期）
+          schedule = graceMonths === 0
+            ? generateEqualPaymentSchedule(principal, monthlyRate, totalMonths, firstYearPayment)
+            : generateEqualPaymentScheduleWithGrace(principal, monthlyRate, totalMonths, graceMonths, firstYearPayment)
+          
+          // 從明細表累積計算總利息和總付款，確保與明細表一致
+          totalInterest = 0
+          totalPayment = 0
+          schedule.forEach(payment => {
+            totalInterest += payment.interest
+            totalPayment += payment.payment
+          })
          } else if (formData.rateType === 'two-tier') {
            // 兩段式利率
            const firstRate = formData.rates.twoTier[0] / 100 / 12
@@ -788,19 +795,18 @@ export default {
              secondYearPayment = firstYearPayment
            }
            
-           // 計算總付款（寬限期只繳利息 + 還款期間繳本息）
-           let graceInterest = 0
-           for (let year = 1; year <= formData.gracePeriod; year++) {
-             const rate = year <= 1 ? firstRate : secondRate
-             graceInterest += principal * rate * 12
-           }
-           
-           const paymentTotal = firstYearPayment * actualPaymentMonths
-           totalPayment = graceInterest + paymentTotal
-           totalInterest = totalPayment - principal
-           
-           // 生成還款明細（包含寬限期）
-           schedule = generateTwoTierScheduleWithGrace(principal, firstRate, secondRate, totalMonths, graceMonths, firstYearPayment, secondYearPayment)
+          // 生成還款明細（包含寬限期）
+          schedule = formData.gracePeriod === 0
+            ? generateTwoTierSchedule(principal, firstRate, secondRate, totalMonths, firstYearPayment, secondYearPayment)
+            : generateTwoTierScheduleWithGrace(principal, firstRate, secondRate, totalMonths, graceMonths, firstYearPayment, secondYearPayment)
+          
+          // 從明細表累積計算總利息和總付款，確保與明細表一致
+          totalInterest = 0
+          totalPayment = 0
+          schedule.forEach(payment => {
+            totalInterest += payment.interest
+            totalPayment += payment.payment
+          })
          } else if (formData.rateType === 'three-tier') {
            // 三段式利率
            console.log('Debug - 進入三段式利率計算')
@@ -938,19 +944,16 @@ export default {
              thirdYearPayment = firstYearPayment
            }
            
-           // 計算總付款（寬限期只繳利息 + 還款期間繳本息）
-           let graceInterest = 0
-           for (let year = 1; year <= formData.gracePeriod; year++) {
-             const rate = year <= 1 ? firstRate : (year <= 2 ? secondRate : thirdRate)
-             graceInterest += principal * rate * 12
-           }
-           
-           const paymentTotal = firstYearPayment * actualPaymentMonths
-           totalPayment = graceInterest + paymentTotal
-           totalInterest = totalPayment - principal
-           
-           // 生成還款明細
-           schedule = generateThreeTierScheduleWithGrace(principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, firstYearPayment, secondYearPayment, thirdYearPayment)
+          // 生成還款明細
+          schedule = generateThreeTierScheduleWithGrace(principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, firstYearPayment, secondYearPayment, thirdYearPayment)
+          
+          // 從明細表累積計算總利息和總付款，確保與明細表一致
+          totalInterest = 0
+          totalPayment = 0
+          schedule.forEach(payment => {
+            totalInterest += payment.interest
+            totalPayment += payment.payment
+          })
          }
        } else {
          // 本金平均攤還
@@ -965,13 +968,15 @@ export default {
            // 計算總付款（寬限期只繳利息 + 還款期間繳本息）
            const graceInterest = principal * monthlyRate * graceMonths
            totalInterest = 0
-           schedule = generateEqualPrincipalScheduleWithGrace(principal, monthlyRate, totalMonths, graceMonths, monthlyPrincipal)
-           
-           // 計算總利息和總付款
-           schedule.forEach(payment => {
-             totalInterest += payment.interest
-           })
-           totalPayment = principal + totalInterest
+           schedule = graceMonths === 0
+            ? generateEqualPrincipalSchedule(principal, monthlyRate, totalMonths, monthlyPrincipal)
+            : generateEqualPrincipalScheduleWithGrace(principal, monthlyRate, totalMonths, graceMonths, monthlyPrincipal)
+          
+          // 計算總利息和總付款
+          schedule.forEach(payment => {
+            totalInterest += payment.interest
+          })
+          totalPayment = principal + totalInterest
          } else if (formData.rateType === 'two-tier') {
            const firstRate = formData.rates.twoTier[0] / 100 / 12
            const secondRate = formData.rates.twoTier[1] / 100 / 12
@@ -979,14 +984,16 @@ export default {
            secondYearPayment = monthlyPrincipal + (principal * secondRate)
            
            // 生成兩段式利率的還款明細表（包含寬限期）
-           schedule = generateTwoTierEqualPrincipalScheduleWithGrace(principal, firstRate, secondRate, totalMonths, graceMonths, monthlyPrincipal)
-           
-           // 計算總利息和總付款
-           totalInterest = 0
-           schedule.forEach(payment => {
-             totalInterest += payment.interest
-           })
-           totalPayment = principal + totalInterest
+           schedule = graceMonths === 0
+            ? generateTwoTierEqualPrincipalSchedule(principal, firstRate, secondRate, totalMonths, monthlyPrincipal)
+            : generateTwoTierEqualPrincipalScheduleWithGrace(principal, firstRate, secondRate, totalMonths, graceMonths, monthlyPrincipal)
+          
+          // 計算總利息和總付款
+          totalInterest = 0
+          schedule.forEach(payment => {
+            totalInterest += payment.interest
+          })
+          totalPayment = principal + totalInterest
          } else if (formData.rateType === 'three-tier') {
            const firstRate = formData.rates.threeTier[0] / 100 / 12
            const secondRate = formData.rates.threeTier[1] / 100 / 12
@@ -996,14 +1003,16 @@ export default {
            thirdYearPayment = monthlyPrincipal + (principal * thirdRate)
            
            // 生成三段式利率的還款明細表（包含寬限期）
-           schedule = generateThreeTierEqualPrincipalScheduleWithGrace(principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, monthlyPrincipal)
-           
-           // 計算總利息和總付款
-           totalInterest = 0
-           schedule.forEach(payment => {
-             totalInterest += payment.interest
-           })
-           totalPayment = principal + totalInterest
+           schedule = graceMonths === 0
+            ? generateThreeTierEqualPrincipalSchedule(principal, firstRate, secondRate, thirdRate, totalMonths, monthlyPrincipal)
+            : generateThreeTierEqualPrincipalScheduleWithGrace(principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, monthlyPrincipal)
+          
+          // 計算總利息和總付款
+          totalInterest = 0
+          schedule.forEach(payment => {
+            totalInterest += payment.interest
+          })
+          totalPayment = principal + totalInterest
          }
        }
 
@@ -1056,39 +1065,60 @@ export default {
      }
 
          const generateEqualPaymentSchedule = (principal, monthlyRate, totalPeriods, monthlyPayment) => {
-       const schedule = []
-       let remainingBalance = principal
+      const schedule = []
+      let remainingBalance = principal
+      const round = (x) => Math.round(x)
+      const payRounded = round(monthlyPayment)
 
-       for (let period = 1; period <= totalPeriods; period++) {
-         const interest = remainingBalance * monthlyRate
-         const principalPayment = monthlyPayment - interest
-         remainingBalance -= principalPayment
+      for (let period = 1; period <= totalPeriods; period++) {
+        const isLast = period === totalPeriods
+        if (isLast) {
+          const interest = round(remainingBalance * monthlyRate)
+          const principalPayment = remainingBalance
+          const payment = principalPayment + interest
+          remainingBalance = 0
+          schedule.push({
+            period,
+            payment,
+            principal: principalPayment,
+            interest,
+            remainingBalance: 0
+          })
+          break
+        }
 
-         schedule.push({
-           period,
-           payment: monthlyPayment,
-           principal: principalPayment,
-           interest,
-           remainingBalance: Math.max(0, remainingBalance)
-         })
-       }
+        const interest = round(remainingBalance * monthlyRate)
+        const principalPayment = payRounded - interest
+        remainingBalance -= principalPayment
+        schedule.push({
+          period,
+          payment: payRounded,
+          principal: principalPayment,
+          interest,
+          remainingBalance: Math.max(0, remainingBalance)
+        })
+      }
 
-       return schedule
-     }
+      return schedule
+    }
 
      const generateEqualPrincipalSchedule = (principal, monthlyRate, totalPeriods, monthlyPrincipal) => {
        const schedule = []
        let remainingBalance = principal
+       const round = (x) => Math.round(x)
+       const basePrincipal = monthlyPrincipal
 
        for (let period = 1; period <= totalPeriods; period++) {
-         const interest = remainingBalance * monthlyRate
-         const payment = monthlyPrincipal + interest
-         remainingBalance -= monthlyPrincipal
+         const isLast = period === totalPeriods
+         let principalPayment = isLast ? remainingBalance : round(basePrincipal)
+         const interest = round(remainingBalance * monthlyRate)
+         const payment = principalPayment + interest
+         remainingBalance -= principalPayment
 
          schedule.push({
            period,
            payment,
-           principal: monthlyPrincipal,
+           principal: principalPayment,
            interest,
            remainingBalance: Math.max(0, remainingBalance)
          })
@@ -1098,37 +1128,42 @@ export default {
      }
 
      const generateTwoTierSchedule = (principal, firstRate, secondRate, totalPeriods, firstPayment, secondPayment) => {
-       const schedule = []
-       let remainingBalance = principal
+      const schedule = []
+      let remainingBalance = principal
+      const round = (x) => Math.round(x)
+      const pay1 = round(firstPayment)
+      const pay2 = round(secondPayment)
 
-       for (let period = 1; period <= totalPeriods; period++) {
-         let payment, interest, principalPayment
-         
-         if (period <= 12) {
-           // 第一年使用第一段利率
-           interest = remainingBalance * firstRate
-           payment = firstPayment
-           principalPayment = payment - interest
-         } else {
-           // 第二年以後使用第二段利率
-           interest = remainingBalance * secondRate
-           payment = secondPayment
-           principalPayment = payment - interest
-         }
-         
-         remainingBalance -= principalPayment
+      for (let period = 1; period <= totalPeriods; period++) {
+        const isFirstYear = period <= 12
+        const rate = isFirstYear ? firstRate : secondRate
+        const isLast = period === totalPeriods
 
-         schedule.push({
-           period,
-           payment,
-           principal: principalPayment,
-           interest,
-           remainingBalance: Math.max(0, remainingBalance)
-         })
-       }
+        if (isLast) {
+          const interest = round(remainingBalance * rate)
+          const principalPayment = remainingBalance
+          const payment = principalPayment + interest
+          remainingBalance = 0
+          schedule.push({ period, payment, principal: principalPayment, interest, remainingBalance: 0 })
+          break
+        }
 
-       return schedule
-     }
+        const payment = isFirstYear ? pay1 : pay2
+        const interest = round(remainingBalance * rate)
+        const principalPayment = payment - interest
+        remainingBalance -= principalPayment
+
+        schedule.push({
+          period,
+          payment,
+          principal: principalPayment,
+          interest,
+          remainingBalance: Math.max(0, remainingBalance)
+        })
+      }
+
+      return schedule
+    }
 
      const generateThreeTierSchedule = (principal, firstRate, secondRate, thirdRate, totalPeriods, firstPayment, secondPayment, thirdPayment) => {
        const schedule = []
@@ -1171,26 +1206,21 @@ export default {
      const generateTwoTierEqualPrincipalSchedule = (principal, firstRate, secondRate, totalPeriods, monthlyPrincipal) => {
        const schedule = []
        let remainingBalance = principal
+       const round = (x) => Math.round(x)
+       const basePrincipal = monthlyPrincipal
 
        for (let period = 1; period <= totalPeriods; period++) {
-         let interest, payment
-         
-         if (period <= 12) {
-           // 第一年使用第一段利率
-           interest = remainingBalance * firstRate
-           payment = monthlyPrincipal + interest
-         } else {
-           // 第二年以後使用第二段利率
-           interest = remainingBalance * secondRate
-           payment = monthlyPrincipal + interest
-         }
-         
-         remainingBalance -= monthlyPrincipal
+         const rate = period <= 12 ? firstRate : secondRate
+         const isLast = period === totalPeriods
+         let principalPayment = isLast ? remainingBalance : round(basePrincipal)
+         const interest = round(remainingBalance * rate)
+         const payment = principalPayment + interest
+         remainingBalance -= principalPayment
 
          schedule.push({
            period,
            payment,
-           principal: monthlyPrincipal,
+           principal: principalPayment,
            interest,
            remainingBalance: Math.max(0, remainingBalance)
          })
@@ -1202,30 +1232,25 @@ export default {
      const generateThreeTierEqualPrincipalSchedule = (principal, firstRate, secondRate, thirdRate, totalPeriods, monthlyPrincipal) => {
        const schedule = []
        let remainingBalance = principal
+       const round = (x) => Math.round(x)
+       const basePrincipal = monthlyPrincipal
 
        for (let period = 1; period <= totalPeriods; period++) {
-         let interest, payment
-         
-         if (period <= 12) {
-           // 第一年使用第一段利率
-           interest = remainingBalance * firstRate
-           payment = monthlyPrincipal + interest
-         } else if (period <= 24) {
-           // 第二年使用第二段利率
-           interest = remainingBalance * secondRate
-           payment = monthlyPrincipal + interest
-         } else {
-           // 第三年以後使用第三段利率
-           interest = remainingBalance * thirdRate
-           payment = monthlyPrincipal + interest
-         }
-         
-         remainingBalance -= monthlyPrincipal
+         let rate
+         if (period <= 12) rate = firstRate
+         else if (period <= 24) rate = secondRate
+         else rate = thirdRate
+
+         const isLast = period === totalPeriods
+         let principalPayment = isLast ? remainingBalance : round(basePrincipal)
+         const interest = round(remainingBalance * rate)
+         const payment = principalPayment + interest
+         remainingBalance -= principalPayment
 
          schedule.push({
            period,
            payment,
-           principal: monthlyPrincipal,
+           principal: principalPayment,
            interest,
            remainingBalance: Math.max(0, remainingBalance)
          })
@@ -1238,19 +1263,25 @@ export default {
      const generateEqualPaymentScheduleWithGrace = (principal, monthlyRate, totalMonths, graceMonths, monthlyPayment) => {
        const schedule = []
        let remainingBalance = principal
+       const round = (x) => Math.round(x)
+       const payRounded = round(monthlyPayment)
 
        for (let period = 1; period <= totalMonths; period++) {
+         const isLast = period === totalMonths
          let payment, interest, principalPayment
-         
+
          if (period <= graceMonths) {
-           // 寬限期內只繳利息
-           interest = remainingBalance * monthlyRate
+           interest = round(remainingBalance * monthlyRate)
            payment = interest
            principalPayment = 0
+         } else if (isLast) {
+           interest = round(remainingBalance * monthlyRate)
+           principalPayment = remainingBalance
+           payment = principalPayment + interest
+           remainingBalance = 0
          } else {
-           // 寬限期後繳本息
-           interest = remainingBalance * monthlyRate
-           payment = monthlyPayment
+           interest = round(remainingBalance * monthlyRate)
+           payment = payRounded
            principalPayment = payment - interest
            remainingBalance -= principalPayment
          }
@@ -1271,86 +1302,29 @@ export default {
        const schedule = []
        let remainingBalance = principal
 
-       for (let period = 1; period <= totalMonths; period++) {
-         let payment, interest, principalPayment
-         
-         if (period <= graceMonths) {
-           // 寬限期內只繳利息（使用第一段利率）
-           interest = remainingBalance * firstRate
-           payment = interest
-           principalPayment = 0
-         } else if (period <= graceMonths + 12) {
-           // 第一年使用第一段利率
-           interest = remainingBalance * firstRate
-           payment = firstPayment
-           principalPayment = payment - interest
-           remainingBalance -= principalPayment
-         } else {
-           // 第二年以後使用第二段利率
-           interest = remainingBalance * secondRate
-           payment = secondPayment
-           principalPayment = payment - interest
-           remainingBalance -= principalPayment
-         }
+       // 將攤還期間的月付金採整數（元）以符合列表顯示與實務入帳
+       const secondPaymentRounded = Math.round(secondPayment)
 
-         schedule.push({
-           period,
-           payment,
-           principal: principalPayment,
-           interest,
-           remainingBalance: Math.max(0, remainingBalance)
-         })
-       }
-
-       return schedule
-     }
-
-     const generateThreeTierScheduleWithGrace = (principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, firstPayment, secondPayment, thirdPayment) => {
-       const schedule = []
-       let remainingBalance = principal
+       const round = (x) => Math.round(x)
 
        for (let period = 1; period <= totalMonths; period++) {
          let payment, interest, principalPayment
          
          if (period <= graceMonths) {
-           // 寬限期內只繳利息（根據年份使用對應利率）
+           // 寬限期內只繳利息：依所在年度使用對應利率
            const year = Math.ceil(period / 12)
-           let rate
-           if (year === 1) rate = firstRate
-           else if (year === 2) rate = secondRate
-           else rate = thirdRate
-           interest = remainingBalance * rate
+           const rate = year === 1 ? firstRate : secondRate
+           const interestRaw = remainingBalance * rate
+           interest = round(interestRaw)
            payment = interest
            principalPayment = 0
          } else {
-           // 寬限期後開始還本付息
-           const paymentPeriod = period - graceMonths
-           const paymentYear = Math.ceil(paymentPeriod / 12)
-           
-           if (formData.gracePeriod === 0) {
-             // 無寬限期：第1年使用第一段利率，第2年使用第二段利率，第3年開始使用第三段利率
-             if (paymentYear === 1) {
-               interest = remainingBalance * firstRate
-               payment = firstPayment
-             } else if (paymentYear === 2) {
-               interest = remainingBalance * secondRate
-               payment = secondPayment
-             } else {
-               interest = remainingBalance * thirdRate
-               payment = thirdPayment
-             }
-           } else {
-             // 有寬限期：第1年還款期間使用第二段利率，第2年開始使用第三段利率
-             if (paymentYear === 1) {
-               interest = remainingBalance * secondRate
-               payment = firstPayment
-             } else {
-               interest = remainingBalance * thirdRate
-               payment = thirdPayment
-             }
-           }
-           
+           // 寬限期後開始本息平均攤還：兩段式在有寬限時，攤還期一律使用第二段利率
+           const interestRaw = remainingBalance * secondRate
+           interest = round(interestRaw)
+           payment = secondPaymentRounded
            principalPayment = payment - interest
+           // 使用已四捨五入後的本金變動更新餘額，避免長期累積誤差
            remainingBalance -= principalPayment
          }
 
@@ -1363,27 +1337,130 @@ export default {
          })
        }
 
+       // 期末調整：將累積的四捨五入殘差一次歸零
+       const residual = Math.round(remainingBalance)
+       if (residual !== 0 && schedule.length > 0) {
+         const last = schedule[schedule.length - 1]
+         last.principal += residual
+         last.payment = last.principal + last.interest
+         remainingBalance -= residual
+         last.remainingBalance = 0
+       }
+
        return schedule
      }
+
+     const generateThreeTierScheduleWithGrace = (principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths) => {
+        const schedule = []
+        let remainingBalance = principal
+
+        const round = (x) => Math.round(x)
+        const rateForAbsMonth = (m) => {
+          const absYear = Math.ceil(m / 12)
+          if (absYear <= 1) return firstRate
+          if (absYear === 2) return secondRate
+          return thirdRate
+        }
+
+        // 先處理寬限期（只繳利息，依絕對年利率）
+        for (let period = 1; period <= Math.min(graceMonths, totalMonths); period++) {
+          const r = rateForAbsMonth(period)
+          const interest = round(remainingBalance * r)
+          schedule.push({
+            period,
+            payment: interest,
+            principal: 0,
+            interest,
+            remainingBalance
+          })
+        }
+
+        if (graceMonths >= totalMonths) return schedule
+
+        // 構建從寬限期結束到期滿的各段（依絕對年變更率）
+        const repayStart = graceMonths + 1
+        const segments = []
+        let segStart = repayStart
+        let currentRate = rateForAbsMonth(segStart)
+        for (let m = repayStart + 1; m <= totalMonths; m++) {
+          const r = rateForAbsMonth(m)
+          if (r !== currentRate) {
+            segments.push({ start: segStart, end: m - 1, rate: currentRate })
+            segStart = m
+            currentRate = r
+          }
+        }
+        segments.push({ start: segStart, end: totalMonths, rate: currentRate })
+
+        // 在每段起點，以當前利率與剩餘期數重算 EMI；段內沿用
+        let currentPayment = 0
+        let periodCounter = repayStart
+        for (let segIdx = 0; segIdx < segments.length; segIdx++) {
+          const seg = segments[segIdx]
+          const monthsLeft = totalMonths - periodCounter + 1
+          const r = seg.rate
+          if (r === 0) {
+            currentPayment = round(remainingBalance / monthsLeft)
+          } else {
+            const pow = Math.pow(1 + r, monthsLeft)
+            currentPayment = round(remainingBalance * (r * pow) / (pow - 1))
+          }
+
+          const isLastSegment = segIdx === segments.length - 1
+          for (let p = seg.start; p <= seg.end; p++) {
+            const isLastPeriod = p === totalMonths
+            if (isLastPeriod) {
+              // 最後一期特殊處理：本金=剩餘本金，利息=剩餘本金*當期利率，月付=本金+利息
+              const interest = round(remainingBalance * r)
+              const principalPayment = remainingBalance
+              const payment = principalPayment + interest
+              remainingBalance = 0
+              schedule.push({
+                period: p,
+                payment,
+                principal: principalPayment,
+                interest,
+                remainingBalance: 0
+              })
+              break
+            }
+
+            const interest = round(remainingBalance * r)
+            const principalPayment = currentPayment - interest
+            remainingBalance -= principalPayment
+            schedule.push({
+              period: p,
+              payment: currentPayment,
+              principal: principalPayment,
+              interest,
+              remainingBalance: Math.max(0, remainingBalance)
+            })
+            periodCounter++
+          }
+        }
+
+        return schedule
+      }
 
      const generateEqualPrincipalScheduleWithGrace = (principal, monthlyRate, totalMonths, graceMonths, monthlyPrincipal) => {
        const schedule = []
        let remainingBalance = principal
+       const round = (x) => Math.round(x)
+       const basePrincipal = monthlyPrincipal
 
        for (let period = 1; period <= totalMonths; period++) {
+         const isLast = period === totalMonths
          let interest, payment, principalPayment
          
          if (period <= graceMonths) {
-           // 寬限期內只繳利息
-           interest = remainingBalance * monthlyRate
+           interest = round(remainingBalance * monthlyRate)
            payment = interest
            principalPayment = 0
          } else {
-           // 寬限期後繳本息
-           interest = remainingBalance * monthlyRate
-           payment = monthlyPrincipal + interest
-           principalPayment = monthlyPrincipal
-           remainingBalance -= monthlyPrincipal
+           interest = round(remainingBalance * monthlyRate)
+           principalPayment = isLast ? remainingBalance : round(basePrincipal)
+           payment = principalPayment + interest
+           remainingBalance -= principalPayment
          }
 
          schedule.push({
@@ -1401,25 +1478,24 @@ export default {
      const generateTwoTierEqualPrincipalScheduleWithGrace = (principal, firstRate, secondRate, totalMonths, graceMonths, monthlyPrincipal) => {
        const schedule = []
        let remainingBalance = principal
+       const round = (x) => Math.round(x)
+       const basePrincipal = monthlyPrincipal
 
        for (let period = 1; period <= totalMonths; period++) {
+         const isLast = period === totalMonths
          let interest, payment, principalPayment
          
          if (period <= graceMonths) {
-           // 寬限期內只繳利息（根據年份使用對應利率）
            const year = Math.ceil(period / 12)
-           let rate
-           if (year <= 1) rate = firstRate
-           else rate = secondRate
-           interest = remainingBalance * rate
+           const rate = year <= 1 ? firstRate : secondRate
+           interest = round(remainingBalance * rate)
            payment = interest
            principalPayment = 0
          } else {
-           // 寬限期後開始還本付息，使用第二段利率
-           interest = remainingBalance * secondRate
-           payment = monthlyPrincipal + interest
-           principalPayment = monthlyPrincipal
-           remainingBalance -= monthlyPrincipal
+           interest = round(remainingBalance * secondRate)
+           principalPayment = isLast ? remainingBalance : round(basePrincipal)
+           payment = principalPayment + interest
+           remainingBalance -= principalPayment
          }
 
          schedule.push({
@@ -1434,42 +1510,43 @@ export default {
        return schedule
      }
 
-     const generateThreeTierEqualPrincipalScheduleWithGrace = (principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, monthlyPrincipal) => {
-       const schedule = []
-       let remainingBalance = principal
+    const generateThreeTierEqualPrincipalScheduleWithGrace = (principal, firstRate, secondRate, thirdRate, totalMonths, graceMonths, monthlyPrincipal) => {
+      const schedule = []
+      let remainingBalance = principal
+      const round = (x) => Math.round(x)
+      const basePrincipal = monthlyPrincipal
 
-       for (let period = 1; period <= totalMonths; period++) {
-         let interest, payment, principalPayment
-         
-         if (period <= graceMonths) {
-           // 寬限期內只繳利息（根據年份使用對應利率）
-           const year = Math.ceil(period / 12)
-           let rate
-           if (year <= 1) rate = firstRate
-           else if (year <= 2) rate = secondRate
-           else rate = thirdRate
-           interest = remainingBalance * rate
-           payment = interest
-           principalPayment = 0
-         } else {
-           // 寬限期後開始還本付息，使用第三段利率
-           interest = remainingBalance * thirdRate
-           payment = monthlyPrincipal + interest
-           principalPayment = monthlyPrincipal
-           remainingBalance -= monthlyPrincipal
-         }
+      for (let period = 1; period <= totalMonths; period++) {
+        const isLast = period === totalMonths
+        let interest, payment, principalPayment
+        
+        if (period <= graceMonths) {
+          const year = Math.ceil(period / 12)
+          let rate
+          if (year <= 1) rate = firstRate
+          else if (year <= 2) rate = secondRate
+          else rate = thirdRate
+          interest = round(remainingBalance * rate)
+          payment = interest
+          principalPayment = 0
+        } else {
+          interest = round(remainingBalance * thirdRate)
+          principalPayment = isLast ? remainingBalance : round(basePrincipal)
+          payment = principalPayment + interest
+          remainingBalance -= principalPayment
+        }
 
-         schedule.push({
-           period,
-           payment,
-           principal: principalPayment,
-           interest,
-           remainingBalance: Math.max(0, remainingBalance)
-         })
-       }
+        schedule.push({
+          period,
+          payment,
+          principal: principalPayment,
+          interest,
+          remainingBalance: Math.max(0, remainingBalance)
+        })
+      }
 
-       return schedule
-     }
+      return schedule
+    }
 
     const formatCurrency = (amount) => {
       return new Intl.NumberFormat('zh-TW', {
@@ -1565,3 +1642,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.grace-period-label {
+  color: #e74c3c;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-left: 8px;
+}
+</style>
