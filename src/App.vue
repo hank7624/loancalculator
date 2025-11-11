@@ -69,20 +69,23 @@
             </li>
           </ul>
         </div>
-        <!-- 隨機專欄摘要 -->
-        <div v-if="homeTab && randomArticle" class="random-article">
+        <!-- 精選專欄（固定兩篇） -->
+        <div v-if="homeTab && featuredArticles.length" class="random-article">
           <h3>精選專欄</h3>
-          <p>
-            <strong>
-              <a href="#" class="article-link" @click.prevent="gotoArticle(randomArticle.id)">
-                {{ randomArticle.title }}
-              </a>
-            </strong>
-          </p>
-          <div class="summary">{{ randomArticle.preview }}</div>
-          <p style="margin-top:.6rem">
-            <a href="#" class="more-link" @click.prevent="gotoArticle(randomArticle.id)">閱讀完整內容 →</a>
-          </p>
+          <div v-for="fa in featuredArticles" :key="fa.id" style="margin-bottom:1.1rem">
+            <p style="margin:0">
+              <strong>
+                <a :href="articleStaticUrl(fa)" class="article-link">
+                  {{ fa.title }}
+                </a>
+              </strong>
+              <span class="date" style="margin-left:.35em">({{ fa.date }})</span>
+            </p>
+            <div class="summary">{{ fa.preview }}</div>
+            <p style="margin-top:.4rem">
+              <a :href="articleStaticUrl(fa)" class="more-link">閱讀完整內容 →</a>
+            </p>
+          </div>
         </div>
 
         <!-- 個別功能頁 -->
@@ -204,10 +207,23 @@ export default {
         .slice(0,2);
     })
     // 首頁隨機精選摘要
-    const randomArticle = computed(() => {
-      const pool = articles.value;
-      return pool[Math.floor(Math.random() * pool.length)]
+    // 精選兩篇（固定 id）
+    const featuredIds = [1006, 1005, 4]
+    const featuredArticles = computed(() => {
+      return articles.value.filter(a => featuredIds.includes(a.id))
     })
+    function slugify(input) {
+      return String(input)
+        .trim()
+        .toLowerCase()
+        .replace(/[\s\/\\]+/g, '-')
+        .replace(/[^\u4e00-\u9fa5a-z0-9\-]+/gi, '')
+        .replace(/\-+/g, '-')
+        .replace(/^\-+|\-+$/g, '')
+    }
+    function articleStaticUrl(a) {
+      return `/articles/${a.id}-${slugify(a.title)}.html`
+    }
 
     // 四大功能設定
     const features = [
@@ -260,7 +276,8 @@ export default {
       features,
       articles,
       latestNews,
-      randomArticle,
+      featuredArticles,
+      articleStaticUrl,
       showPrivacyPolicy,
       showTermsOfService,
       showAboutUs,
