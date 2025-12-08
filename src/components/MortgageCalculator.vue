@@ -602,6 +602,41 @@
          </div>
        </div>
     </div>
+
+    <!-- 新增：SEO與內容說明區塊 -->
+    <section class="calculator-guide-section">
+      <h3>房貸試算與申請攻略</h3>
+      
+      <article class="guide-content">
+        <h4>影響房貸成數與利率的關鍵</h4>
+        <p>銀行鑑價與核貸成數主要取決於「人」與「屋」兩大構面。<strong>房屋地點（Location）</strong>是決定成數的關鍵（如捷運沿線通常可達 8 成）；而<strong>借款人信用與收入</strong>則決定利率高低。建議申貸前保持帳戶內有穩定餘額，並避免近期增貸。</p>
+        
+        <h4>寬限期運用策略：該用好用滿嗎？</h4>
+        <p>「寬限期」是指只需繳利息、不需繳本金的期間（通常 1~5 年）。雖然初期壓力小，但<strong>寬限期結束後，本金會在剩餘年限內攤還，導致月付金大幅跳升</strong>（可能變為原本的 2~3 倍）。建議僅在庫存現金不足或有明確短期投資規劃時使用，切勿單純因「想少繳一點」而申請，以免日後無力負擔。</p>
+
+        <h4>本息平均攤還 vs 本金平均攤還</h4>
+        <ul>
+          <li><strong>本息平均攤還</strong>：每月繳款金額固定（利率不變前提下），適合薪水固定的首購族，便於財務規劃。缺點是總利息支出較多。</li>
+          <li><strong>本金平均攤還</strong>：每月償還固定本金，利息隨本金減少而遞減。初期繳款壓力最大，但總繳利息最少。適合目前收入較高或預期未來收入可能減少的族群。</li>
+        </ul>
+      </article>
+
+      <div class="faq-section">
+        <h4>常見問題 (FAQ)</h4>
+        <details>
+          <summary>首購族有什麼優惠貸款？</summary>
+          <p>目前最熱門的是「新青安房貸」（新青年安心成家房貸），提供最高 1000 萬額度、最長 40 年期與 5 年寬限期，利率經補貼後約在 2.5%~3.0%（依政策變動）。只要名下無自有住宅（本人、配偶及未成年子女）即可申請。</p>
+        </details>
+        <details>
+          <summary>甚麼是「房貸負擔率」？建議佔薪水多少？</summary>
+          <p>房貸負擔率 = 每月房貸支出 / 每月家庭可支配所得。一般建議控制在 <strong>30% 以內</strong> 為優，不超過 40% 為上限。若超過 50%，將嚴重擠壓生活品質並增加違約風險。</p>
+        </details>
+        <details>
+          <summary>一段式利率好，還是分段式好？</summary>
+          <p>一段式利率結構簡單，不易隨銀行政策大幅波動，適合長期持有自住。分段式利率通常「前低後高」，若您計畫在短期內（如 3~5 年）轉手或轉貸，可考慮前幾年利率較低的方案；否則長期來看，一段式通常較划算。</p>
+        </details>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -1574,7 +1609,7 @@ export default {
               .summary { margin: 20px 0; }
               @media print { body { margin: 0; } }
             </style>
-          </head>
+            </head>
           <body>
             <div class="header">
               <h1>房貸還款明細表</h1>
@@ -1650,4 +1685,24 @@ export default {
   font-weight: bold;
   margin-left: 8px;
 }
+
+/* 新增：SEO內容區塊樣式 (比照信貸計算機) */
+.calculator-guide-section { margin-top: 40px; padding-top: 30px; border-top: 2px solid #eee; }
+.calculator-guide-section h3 { font-size: 1.5rem; color: #2c3e50; margin-bottom: 1.5rem; text-align: center; }
+.guide-content { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 30px; }
+.guide-content h4 { font-size: 1.2rem; color: #34495e; margin: 1.5rem 0 0.8rem; border-left: 4px solid #42b983; padding-left: 10px; }
+.guide-content h4:first-child { margin-top: 0; }
+.guide-content p { line-height: 1.7; color: #555; margin-bottom: 1rem; }
+.guide-content ul { padding-left: 20px; margin-bottom: 1rem; }
+.guide-content li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+
+.faq-section { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.faq-section h4 { font-size: 1.3rem; color: #2c3e50; margin-bottom: 1.2rem; }
+details { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+details:last-child { border-bottom: none; }
+summary { font-weight: 600; cursor: pointer; color: #2c3e50; font-size: 1.05rem; list-style: none; /* simple reset */ }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; float: right; font-weight: bold; color: #42b983; }
+details[open] summary::after { content: '-'; }
+details p { margin-top: 12px; color: #666; line-height: 1.6; padding-left: 10px; border-left: 3px solid #eee; }
 </style>
