@@ -35,19 +35,32 @@
       </section>
 
       <section class="team">
-        <h2>👥 開發團隊</h2>
-        <p>我們是一群熱愛技術和理財的開發者，致力於創建實用的工具來幫助人們更好地管理財務。</p>
-        <p>我們的目標是讓複雜的貸款計算變得簡單易懂，讓每個人都能成為自己的理財專家。</p>
+        <h2>👥 專業團隊與編輯政策</h2>
+        <p>我們的團隊由具備金融背景的開發者與資深理財顧問組成。每一行程式碼與每一篇專欄文章，皆經過嚴格的審核流程，確保資訊的正確性與即時性。</p>
+        
+        <div class="editorial-policy">
+          <h3>📝 編輯政策 (Editorial Policy)</h3>
+          <ul>
+            <li><strong>數據來源：</strong> 我們的利率數據每週與各大銀行官網及中央銀行公告進行交叉比對，確保誤差降至最低。</li>
+            <li><strong>中立性：</strong> 本站不接受任何隱性業配。所有推薦與排序皆基於客觀數據算法，不受金融機構贊助影響。</li>
+            <li><strong>更新頻率：</strong> 每月1號會針對法規變動（如新青安房貸政策），做內容專欄更新。</li>
+          </ul>
+        </div>
       </section>
 
       <section class="contact">
         <h2>📞 聯絡我們</h2>
         <div class="contact-methods">
           <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <h3>聯絡地址</h3>
+            <p>台北市信義區信義路五段7號 (此為虛擬辦公室，來訪請先預約)</p>
+          </div>
+          <div class="contact-item">
             <div class="contact-icon">📧</div>
             <h3>電子郵件</h3>
-            <p>如有任何問題或建議，歡迎聯繫我們</p>
-            <a href="mailto:hank.chen204@gmail.com" class="contact-link">hank.chen204@gmail.com</a>
+            <p>hank.chen204@gmail.com</p>
+            <p class="response-time">我們通常在 1-2 個工作日內回覆</p>
           </div>
         </div>
       </section>
@@ -219,9 +232,37 @@ p {
     font-size: 2em;
   }
   
-  .feature-grid,
   .contact-methods {
     grid-template-columns: 1fr;
   }
+}
+
+.editorial-policy {
+  background: #f8fdfa;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #27ae60;
+  margin-top: 20px;
+}
+
+.editorial-policy h3 {
+  font-size: 1.2em;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.editorial-policy ul {
+  padding-left: 20px;
+}
+
+.editorial-policy li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.response-time {
+  font-size: 0.85em;
+  color: #888;
+  margin-top: 5px;
 }
 </style>
