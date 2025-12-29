@@ -40,7 +40,7 @@
       </section>
 
       <div class="back-link">
-        <button class="back-btn" @click="$emit('close')">返回首頁</button>
+        <router-link to="/" class="back-btn">返回首頁</router-link>
       </div>
     </div>
   </div>

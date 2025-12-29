@@ -5,7 +5,7 @@
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-9729139144169160"
-           data-ad-slot="XXXXXXXXXX"
+           data-ad-slot="9350842661"
            data-ad-format="auto"
            data-full-width-responsive="true">
       </ins>
@@ -13,7 +13,7 @@
 
     <!-- 主標題 -->
     <header class="header">
-      <div class="title-container">
+      <div class="title-container" @click="goHome" style="cursor: pointer;">
         <span class="icon">🧮</span>
         <h1>免費貸款計算機</h1>
         <span class="icon">💰</span>
@@ -22,21 +22,11 @@
     </header>
 
     <nav class="nav-tabs">
-      <button :class="['nav-tab', { active: homeTab } ]" @click="resetHome">
-        首頁
-      </button>
-      <button :class="['nav-tab', { active: activeTab === 'credit' }]" @click="openTab('credit')">
-        💰 信貸/車貸計算
-      </button>
-      <button :class="['nav-tab', { active: activeTab === 'mortgage' }]" @click="openTab('mortgage')">
-        🏠 房貸計算
-      </button>
-      <button :class="['nav-tab', { active: activeTab === 'rates' }]" @click="openTab('rates')">
-        🏦 銀行利率對比
-      </button>
-      <button :class="['nav-tab', { active: activeTab === 'articles' }]" @click="openTab('articles')">
-        📰 專欄文章
-      </button>
+      <router-link to="/" class="nav-tab" active-class="active">首頁</router-link>
+      <router-link to="/credit" class="nav-tab" active-class="active">💰 信貸/車貸計算</router-link>
+      <router-link to="/mortgage" class="nav-tab" active-class="active">🏠 房貸計算</router-link>
+      <router-link to="/rates" class="nav-tab" active-class="active">🏦 銀行利率對比</router-link>
+      <router-link to="/articles" class="nav-tab" active-class="active">📰 專欄文章</router-link>
     </nav>
 
     <main class="main-content">
@@ -45,94 +35,17 @@
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9729139144169160"
-             data-ad-slot="XXXXXXXXXX"
+             data-ad-slot="8062973167"
              data-ad-format="vertical"></ins>
       </aside>
 
       <div class="calculator-container">
-        
-        <!-- Phase 2: Hero Intro Section -->
-        <div v-if="homeTab" class="hero-intro">
-          <h2>全方位的免費貸款試算平台</h2>
-          <p class="intro-text">
-            無論您是計畫買房的首購族、需要資金周轉的創業者，或是想比較銀行利率的精明理財者，
-            <strong>免費貸款計算機</strong>都能為您提供最精準的數字依據。
-            我們採用與銀行同等的試算邏輯，協助您解析每月還款壓力、總利息支出及最佳貸款方案。
-            <br><br>
-            不需註冊、不留個資，所有計算皆在您的瀏覽器本地完成，保障您的隱私安全。
-          </p>
-        </div>
-
-        <!-- 首頁四大圖示 -->
-        <div v-if="homeTab" class="home-feature-grid">
-          <div class="feature-item" v-for="f in features" :key="f.key" @click="openTab(f.key)">
-            <div class="feature-icon">{{ f.icon }}</div>
-            <div class="feature-title">{{ f.title }}</div>
-            <div class="feature-desc">{{ f.desc }}</div>
-          </div>
-        </div>
-
-        <!-- Phase 2: Tools Overview Section -->
-        <div v-if="homeTab" class="tools-overview">
-          <div class="tool-desc-item">
-            <h4>💰 信貸/車貸計算</h4>
-            <p>適用於信用貸款、汽車貸款或任何分期付款試算。支援「本息平均攤還」與「本金平均攤還」兩種模式，並可產出詳細的月付金明細表，讓您清楚知道每一塊錢利息的去向。</p>
-          </div>
-          <div class="tool-desc-item">
-            <h4>🏠 房貸試算</h4>
-            <p>專為購屋族設計。考量寬限期、單一或分段式利率（如新青安房貸）等多種參數，精準模擬未來 20~40 年的還款現金流，是買房前必備的財務規劃工具。</p>
-          </div>
-          <div class="tool-desc-item">
-            <h4>🏦 利率對比</h4>
-            <p>彙整各大銀行最新的信貸與房貸利率與手續費資訊。透過客觀的數據比較，協助您在眾多方案中篩選出最划算、隱藏成本最低的貸款產品。</p>
-          </div>
-        </div>
-
-        <!-- 最新貸款資訊區 -->
-        <div v-if="homeTab" class="latest-news">
-          <h3>最新貸款資訊</h3>
-          <ul>
-            <li v-for="news in latestNews" :key="news.id">
-              <strong @click="gotoArticle(news.id)" class="article-link">{{news.title}}</strong> <span class="date">({{ news.date }})</span>
-              <p>{{ news.preview }}</p>
-              <a @click.prevent="gotoArticle(news.id)" class="more-link">閱讀完整內容 →</a>
-            </li>
-          </ul>
-        </div>
-        <!-- 精選專欄（固定兩篇） -->
-        <div v-if="homeTab && featuredArticles.length" class="random-article">
-          <h3>精選專欄</h3>
-          <div v-for="fa in featuredArticles" :key="fa.id" style="margin-bottom:1.1rem">
-            <p style="margin:0">
-              <strong>
-                <a :href="articleStaticUrl(fa)" class="article-link">
-                  {{ fa.title }}
-                </a>
-              </strong>
-              <span class="date" style="margin-left:.35em">({{ fa.date }})</span>
-            </p>
-            <div class="summary">{{ fa.preview }}</div>
-            <p style="margin-top:.4rem">
-              <a :href="articleStaticUrl(fa)" class="more-link">閱讀完整內容 →</a>
-            </p>
-          </div>
-        </div>
-
-        <!-- 個別功能頁 -->
-        <CreditCalculator v-if="activeTab === 'credit'" />
-        <MortgageCalculator v-if="activeTab === 'mortgage'" />
-        <BankRateComparison v-if="activeTab === 'rates'" />
-        <Articles 
-          v-if="activeTab==='articles'"
-          :selected-id="selectedArticleId"
-          :articles="articles"
-          @article-selected="handleArticleSelected"
-        />
-
-        <!-- 內嵌資訊區塊（隱私政策／使用條款／關於我們／貸款知識） -->
-        <section id="info-section" v-if="infoSectionComponent" class="info-section">
-          <component :is="infoSectionComponent" @close="handleInfoClose" />
-        </section>
+        <!-- 路由視圖：所有頁面將在這裡切換 -->
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </div>
 
       <!-- 右側廣告 -->
@@ -140,7 +53,7 @@
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-9729139144169160"
-             data-ad-slot="XXXXXXXXXX"
+             data-ad-slot="8062973167"
              data-ad-format="vertical"></ins>
       </aside>
     </main>
@@ -150,180 +63,57 @@
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-9729139144169160"
-           data-ad-slot="XXXXXXXXXX"
+           data-ad-slot="7814295325"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
     </div>
 
     <!-- 頁腳 -->
     <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-main">
-          <p>&copy; 2024 免費貸款計算機. 本工具僅供參考，實際貸款條件請以銀行公告為準。</p>
-        </div>
-        <div class="footer-links">
-          <div class="link-group">
-            <h4>法律條款</h4>
-            <a href="#" @click.prevent="scrollToInfo('PrivacyPolicy')">隱私政策</a>
-            <a href="#" @click.prevent="scrollToInfo('TermsOfService')">使用條款</a>
-          </div>
-          <div class="link-group">
-            <h4>關於我們</h4>
-            <a href="#" @click.prevent="scrollToInfo('AboutUs')">關於我們</a>
-            <a href="#" @click.prevent="scrollToInfo('LoanKnowledge')">貸款知識</a>
-          </div>
-          <div class="link-group">
-            <h4>網站導覽</h4>
-            <ul class="footer-nav-list">
-              <li><a href="/credit.html">信貸/車貸介紹</a></li>
-              <li><a href="/mortgage.html">房貸計算說明</a></li>
-              <li><a href="/rates.html">銀行利率對比</a></li>
-              <li><a href="/articles.html">專欄導覽</a></li>
-            </ul>
-          </div>
-        </div>
+      <p>
+        © 2024 免費貸款計算機 | 
+        <router-link to="/about">關於我們</router-link> | 
+        <router-link to="/privacy">隱私權政策</router-link> | 
+        <router-link to="/terms">使用條款</router-link> | 
+        <router-link to="/knowledge">貸款知識</router-link> | 
+        <router-link to="/articles">專欄導覽</router-link>
+      </p>
+      <div style="font-size: 0.8rem; margin-top: 5px; color: #888;">
+        台北市信義區信義路五段7號 | 投資一定有風險，申辦貸款前請詳閱公開說明書
       </div>
     </footer>
-
-    <!-- 彈出頁面（保留，其他地方可能用到） -->
-    <div v-if="showModal" class="modal-overlay" @click="closeModal">
-      <div class="modal-content" @click.stop>
-        <button class="modal-close" @click="closeModal">&times;</button>
-        <component :is="currentModal" @close="closeModal" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import { ref, computed, onMounted, nextTick } from 'vue'
-import CreditCalculator from './components/CreditCalculator.vue'
-import MortgageCalculator from './components/MortgageCalculator.vue'
-import BankRateComparison from './components/BankRateComparison.vue'
-import Articles from './components/Articles.vue'
-import PrivacyPolicy from './components/PrivacyPolicy.vue'
-import TermsOfService from './components/TermsOfService.vue'
-import AboutUs from './components/AboutUs.vue'
-import LoanKnowledge from './components/LoanKnowledge.vue'
-import articlesData from './components/articles-home-data.js'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'App',
-  components: {
-    CreditCalculator,
-    MortgageCalculator,
-    BankRateComparison,
-    Articles,
-    PrivacyPolicy,
-    TermsOfService,
-    AboutUs,
-    LoanKnowledge
-  },
   setup() {
-    const homeTab = ref(true)
-    const activeTab = ref('')
-    const showModal = ref(false)
-    const currentModal = ref(null)
+    const router = useRouter()
 
-    // 內嵌資訊區塊元件
-    const infoSectionComponent = ref(null)
-
-    // 引用所有專欄文章
-    const articles = ref(articlesData)
-    // 首頁最新2則，按日期先後
-    const latestNews = computed(() => {
-      return [...articles.value]
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(0,2);
-    })
-    // 首頁隨機精選摘要
-    // 精選兩篇（固定 id）
-    const featuredIds = [1006, 1005, 4]
-    const featuredArticles = computed(() => {
-      return articles.value.filter(a => featuredIds.includes(a.id))
-    })
-    function slugify(input) {
-      return String(input)
-        .trim()
-        .toLowerCase()
-        .replace(/[\s\/\\]+/g, '-')
-        .replace(/[^\u4e00-\u9fa5a-z0-9\-]+/gi, '')
-        .replace(/\-+/g, '-')
-        .replace(/^\-+|\-+$/g, '')
-    }
-    function articleStaticUrl(a) {
-      return `/articles/${a.id}-${slugify(a.title)}.html`
+    const goHome = () => {
+      router.push('/')
     }
 
-    // 四大功能設定
-    const features = [
-      { key: 'credit', icon: '💰', title: '信貸/車貸計算', desc: '快速計算信貸/車貸 月付金額與總利息' },
-      { key: 'mortgage', icon: '🏠', title: '房貸計算', desc: '支援多種利率、寬限期，還款明細清晰' },
-      { key: 'rates', icon: '🏦', title: '銀行利率對比', desc: '即時更新利率，挑選適合自己的貸款' },
-      { key: 'articles', icon: '📰', title: '專欄文章', desc: '專家解析，貸款大小事不遺漏' },
-    ]
-
-    // ===== 以下為原有 modal、tab控制，微調如下 =====
-    const scrollToInfo = async (componentName) => {
-      infoSectionComponent.value = componentName
-      await nextTick()
-      const el = document.getElementById('info-section')
-      if (el) {
-        try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }) } catch (e) { window.scrollTo(0, el.offsetTop || 0) }
+    onMounted(() => {
+      // AdSense 推送邏輯
+      try {
+        const ads = document.querySelectorAll('.adsbygoogle');
+        ads.forEach(ad => {
+          if (!ad.innerHTML) {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          }
+        });
+      } catch (e) {
+        console.error('AdSense load error:', e);
       }
-    }
-
-    const showPrivacyPolicy = () => { currentModal.value = 'PrivacyPolicy'; showModal.value = true }
-    const showTermsOfService = () => { currentModal.value = 'TermsOfService'; showModal.value = true }
-    const showAboutUs = () => { currentModal.value = 'AboutUs'; showModal.value = true }
-    const showLoanKnowledge = () => { currentModal.value = 'LoanKnowledge'; showModal.value = true }
-    const closeModal = () => { showModal.value = false; currentModal.value = null }
-
-    // 首頁模式與tab切換
-    function openTab(key) { homeTab.value = false; activeTab.value = key; selectedArticleId.value = null }
-    function resetHome() { homeTab.value = true; activeTab.value = ''; selectedArticleId.value = null }
-
-    // ===== 一篇專欄連結事件 =====
-    const selectedArticleId = ref(null)
-    function gotoArticle(id) { homeTab.value = false; activeTab.value = 'articles'; selectedArticleId.value = id }
-
-    function handleArticleSelected(id) { selectedArticleId.value = id; activeTab.value = 'articles'; homeTab.value = false }
-    function handleArticleModalClose() { selectedArticleId.value = null }
-
-    // 內嵌資訊區塊關閉事件
-    function handleInfoClose() {
-      infoSectionComponent.value = null
-      try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch (e) { window.scrollTo(0, 0) }
-      // 可選：回首頁
-      // homeTab.value = true; activeTab.value = ''
-    }
-
-    onMounted(() => { if (window.adsbygoogle) { window.adsbygoogle.push({}) } })
+    })
 
     return {
-      homeTab,
-      activeTab,
-      features,
-      articles,
-      latestNews,
-      featuredArticles,
-      articleStaticUrl,
-      showPrivacyPolicy,
-      showTermsOfService,
-      showAboutUs,
-      showLoanKnowledge,
-      showModal,
-      currentModal,
-      closeModal,
-      openTab,
-      resetHome,
-      gotoArticle,
-      selectedArticleId,
-      handleArticleSelected,
-      handleArticleModalClose,
-      infoSectionComponent,
-      scrollToInfo,
-      handleInfoClose
+      goHome
     }
   }
 }

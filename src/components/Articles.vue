@@ -37,6 +37,12 @@
         </div>
       </div>
     </div>
+
+    
+    <div class="back-link">
+      <router-link to="/" class="back-btn">返回首頁</router-link>
+    </div>
+
     <!-- 文章詳情彈出層 -->
     <div v-if="selectedArticle" class="article-modal-overlay" @click="closeArticle">
       <div class="article-modal-content" @click.stop>
@@ -76,62 +82,85 @@
 
 <script>
 import { ref, computed, watch, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import rawArticlesData from './articles-home-data.js'
+
 export default {
   name: 'Articles',
   props: {
-    selectedId: {
-      type: [Number, String],
-      default: null
-    },
     articles: {
       type: Array,
       default: ()=>[]
     }
   },
   setup(props, { emit }) {
+    const route = useRoute()
+    const router = useRouter()
+    
+    // 優先使用 props (如果有)，否則使用本地導入的資料
+    const articlesData = ref(props.articles.length ? props.articles : rawArticlesData)
+
     const selectedArticle = ref(null)
-    // 分類切換
     const categories = [
       { label:'全部文章', value:'all' },
       { label:'央行政策', value:'央行政策' },
       { label:'貸款知識', value:'貸款知識' },
       { label:'信貸指南', value:'信貸指南' },
-      { label:'房貸資訊', value:'房貸資訊' }
+      { label:'房貸資訊', value:'房貸資訊' },
+      { label:'房貸進階', value:'房貸進階' },
+      { label:'信用管理', value:'信用管理' },
+      { label:'理財規劃', value:'理財規劃' },
+      { label:'汽車貸款', value:'汽車貸款' },
+      { label:'投資理財', value:'投資理財' },
+      { label:'法律常識', value:'法律常識' },
+      { label:'學生貸款', value:'學生貸款' },
+      { label:'債務危機', value:'債務危機' },
+      { label:'退休規劃', value:'退休規劃' }
     ]
     const currentCategory = ref('all')
+    
     const filteredArticles = computed(()=>{
-      if (currentCategory.value==='all') return props.articles
-      return props.articles.filter(a=>a.category===currentCategory.value)
+      if (currentCategory.value==='all') return articlesData.value
+      return articlesData.value.filter(a=>a.category===currentCategory.value)
     })
-    // 文章行為
+
     const selectArticle = (article) => {
       selectedArticle.value = article
-      emit('article-selected', article.id)
+      // 更新網址，方便分享
+      router.push({ query: { id: article.id } })
     }
+
     const closeArticle = () => {
       selectedArticle.value = null
-      emit('close')
+      router.push({ query: {} }) // 清除 query
     }
-    // 若收到 selectedId props，自動彈窗該文章
-    watch(
-      () => props.selectedId,
-      (id) => {
-        if (id && props.articles && props.articles.length) {
-          const found = props.articles.find(a=>a.id==id)
-          if(found) selectedArticle.value = found
+
+    // 檢查 URL Query 是否有 ID
+    const checkRouteForArticle = () => {
+      const id = route.query.id
+      if (id && articlesData.value.length) {
+        const found = articlesData.value.find(a => a.id == id)
+        if (found) selectedArticle.value = found
+      }
+    }
+
+    watch(() => route.query.id, (newId) => {
+      if (newId) {
+        if(articlesData.value.length) {
+           const found = articlesData.value.find(a => a.id == newId)
+           if (found) selectedArticle.value = found
         }
-      },
-      {immediate:true}
-    )
-    // 首次 mount 若有 selectedId 直接展開
-    onMounted(()=>{
-      if(props.selectedId&&props.articles&&props.articles.length){
-        const found=props.articles.find(a=>a.id==props.selectedId)
-        if(found) selectedArticle.value=found
+      } else {
+        selectedArticle.value = null
       }
     })
+
+    onMounted(()=>{
+      checkRouteForArticle()
+    })
+
     return {
-      articles: props.articles,
+      articles: articlesData, // export 給 template 用
       selectedArticle,
       selectArticle,
       closeArticle,
@@ -384,5 +413,27 @@ export default {
   .category-tags {
     justify-content: center;
   }
+  .category-tags {
+    justify-content: center;
+  }
+}
+
+.back-link {
+  text-align: center;
+  margin: 40px 0 20px 0;
+}
+
+.back-btn {
+  display: inline-block;
+  background: #27ae60;
+  color: white;
+  padding: 12px 30px;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+  background: #219a52;
 }
 </style>
