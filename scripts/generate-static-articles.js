@@ -261,10 +261,14 @@ function renderArticleHtml(siteBase, article, canonicalPath) {
 
     <section class="section card related">
       <h2>延伸閱讀</h2>
-      <p>
-        <a href="/credit.html">信貸/車貸介紹</a> ｜ 
-        <a href="/mortgage.html">房貸計算說明</a> ｜ 
-        <a href="/rates.html">銀行利率對比</a>
+      <ul>
+        ${(article.relatedLinks || []).map(link => `<li><a href="${link.url}">${escapeHtml(link.title)}</a></li>`).join('\n')}
+      </ul>
+      <p style="margin-top:20px; border-top:1px solid #eee; padding-top:15px;">
+        <a href="/">首頁</a> ｜ 
+        <a href="/credit">信貸/車貸試算</a> ｜ 
+        <a href="/mortgage">房貸計算說明</a> ｜ 
+        <a href="/glossary">貸款名詞百科</a>
       </p>
     </section>
 
@@ -332,36 +336,22 @@ function renderArticlesIndex(siteBase, items) {
 </html>`;
 }
 
-function upsertSitemap(siteBase, baseXml, urls) {
-  // If sitemap exists, parse minimal; else create basic
-  let xml = baseXml;
-  if (!xml) {
-    xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-</urlset>
-`;
-  }
-  // Insert before closing tag
+function generateSitemap(siteBase, urls) {
   const closingTag = '</urlset>';
+  const today = new Date().toISOString().slice(0, 10);
   const entries = urls.map(u => {
-    const today = new Date().toISOString().slice(0, 10);
     return `  <url>
     <loc>${siteBase}${u}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>${u === '/' ? '1.0' : (u.includes('.html') ? '0.7' : '0.9')}</priority>
   </url>`;
   }).join('\n');
 
-  // Remove old article entries for id-slug pages to prevent duplicates
-  xml = xml.replace(/[\s\S]*?<urlset[^>]*>/, m => m); // keep header
-  // Not doing full XML parse; safe append
-  if (xml.includes(closingTag)) {
-    xml = xml.replace(closingTag, `${entries}\n${closingTag}`);
-  } else {
-    xml += `\n${entries}\n${closingTag}`;
-  }
-  return xml;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+${closingTag}`;
 }
 
 async function main() {
@@ -399,9 +389,32 @@ async function main() {
     return isNaN(db - da) ? 0 : db - da;
   });
 
-  // Generate each article page
-  const sitemapUrls = [];
+  // Core pages for sitemap
+  const coreUrls = ['/', '/credit', '/mortgage', '/rates', '/articles', '/glossary', '/about', '/privacy', '/terms', '/knowledge'];
+  const sitemapUrls = [...coreUrls];
   for (const a of items) {
+    // Basic related articles logic: same category or neighbor items
+    const related = items
+      .filter(it => it.id !== a.id && it.category === a.category)
+      .slice(0, 3)
+      .map(it => ({
+        title: it.title,
+        url: `/articles/${it.id}-${slugify(it.title)}.html`
+      }));
+    
+    // If fewer than 3 by category, add random ones
+    if (related.length < 3) {
+      const extra = items
+        .filter(it => it.id !== a.id && !related.find(r => r.title === it.title))
+        .slice(0, 3 - related.length)
+        .map(it => ({
+          title: it.title,
+          url: `/articles/${it.id}-${slugify(it.title)}.html`
+        }));
+      related.push(...extra);
+    }
+    
+    a.relatedLinks = related;
     const slug = `${a.id}-${slugify(a.title)}`;
     const relPath = `/articles/${slug}.html`;
     const outPath = path.join(articlesDir, `${slug}.html`);
@@ -415,13 +428,7 @@ async function main() {
   fs.writeFileSync(articlesIndexPath, indexHtml, 'utf-8');
 
   // Update sitemap
-  let baseXml = '';
-  if (fs.existsSync(sitemapPath)) {
-    baseXml = fs.readFileSync(sitemapPath, 'utf-8');
-  } else {
-    baseXml = '';
-  }
-  const newXml = upsertSitemap(siteBase, baseXml, sitemapUrls);
+  const newXml = generateSitemap(siteBase, sitemapUrls);
   fs.writeFileSync(sitemapPath, newXml, 'utf-8');
 
   console.log(`Generated ${items.length} article pages, updated articles.html and sitemap.xml`);

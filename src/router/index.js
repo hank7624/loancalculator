@@ -11,6 +11,7 @@ const AboutUs = () => import('../components/AboutUs.vue')
 const PrivacyPolicy = () => import('../components/PrivacyPolicy.vue')
 const TermsOfService = () => import('../components/TermsOfService.vue')
 const LoanKnowledge = () => import('../components/LoanKnowledge.vue')
+import LoanGlossary from '../components/LoanGlossary.vue'
 // const ArticleDetail = () => import('../components/ArticleDetail.vue') // 如果需要單獨文章頁
 
 // 暫時將首頁內容與 App.vue 保持一致，我們稍後會重構 App.vue
@@ -72,6 +73,12 @@ const routes = [
         name: 'Knowledge',
         component: LoanKnowledge,
         meta: { title: '貸款知識庫 | 免費貸款計算機' }
+    },
+    {
+        path: '/glossary',
+        name: 'Glossary',
+        component: LoanGlossary,
+        meta: { title: '貸款名詞百科 | 免費貸款計算機' }
     },
     // 捕捉 404
     { path: '/:pathMatch(.*)*', redirect: '/' }

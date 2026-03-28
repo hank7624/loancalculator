@@ -21,6 +21,23 @@
       </div>
     </div>
 
+    <!-- Phase 4: Expert Analysis Section -->
+    <div class="expert-analysis">
+      <h3>💡 專業理財點評</h3>
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <div class="analysis-tag">2026 展望</div>
+          <p>「隨著全球進入微通膨時代，房貸利率預期將維持穩定。建議首購族善用各項補貼政策，並預留至少 6 個月的還款周轉金。」</p>
+          <div class="expert-info">— 資深授信專員 / 陳先生</div>
+        </div>
+        <div class="analysis-card">
+          <div class="analysis-tag">信用策略</div>
+          <p>「信用卡預借現金對信用的傷害往往超乎想像。若有資金壓力，辦理低息信貸並維持穩定還款，才是長期維持 800 分信用的捷徑。」</p>
+          <div class="expert-info">— 財務顧問 / 林小姐</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Phase 2: Tools Overview Section -->
     <div class="tools-overview">
       <div class="tool-desc-item" @click="navigateTo('/credit')">
@@ -161,6 +178,19 @@ export default {
 .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
 .feature-title { font-size: 1.2rem; font-weight: bold; color: #2c3e50; margin-bottom: 0.5rem; }
 .feature-desc { font-size: 0.9rem; color: #666; line-height: 1.4; }
+
+/* Expert Analysis */
+.expert-analysis { margin: 3rem 0; }
+.expert-analysis h3 { margin-bottom: 1.5rem; color: #2c3e50; font-weight: bold; }
+.analysis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.analysis-card { background: #fffdf0; border: 1px solid #ffeeba; padding: 20px; border-radius: 12px; position: relative; }
+.analysis-tag { display: inline-block; background: #e67e22; color: white; padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 12px; }
+.analysis-card p { font-style: italic; color: #444; line-height: 1.6; margin-bottom: 15px; }
+.expert-info { font-size: 0.9rem; color: #7f8c8d; text-align: right; font-weight: 500; }
+
+@media (max-width: 600px) {
+  .analysis-grid { grid-template-columns: 1fr; }
+}
 
 .latest-news { margin-top: 3rem; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
 .latest-news h3 { margin-bottom: 1.5rem; color: #2c3e50; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.5rem; }

@@ -1,16 +1,5 @@
 <template>
   <div id="app">
-    <!-- 頂部廣告區域 -->
-    <div class="ad-container ad-top">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-9729139144169160"
-           data-ad-slot="9350842661"
-           data-ad-format="auto"
-           data-full-width-responsive="true">
-      </ins>
-    </div>
-
     <!-- 主標題 -->
     <header class="header">
       <div class="title-container" @click="goHome" style="cursor: pointer;">
@@ -27,7 +16,19 @@
       <router-link to="/mortgage" class="nav-tab" active-class="active">🏠 房貸計算</router-link>
       <router-link to="/rates" class="nav-tab" active-class="active">🏦 銀行利率對比</router-link>
       <router-link to="/articles" class="nav-tab" active-class="active">📰 專欄文章</router-link>
+      <router-link to="/glossary" class="nav-tab" active-class="active">📘 貸款百科</router-link>
     </nav>
+
+    <!-- 頂部廣告區域 (已挪至導航下方，優化 Above the Fold) -->
+    <div class="ad-container ad-top">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9729139144169160"
+           data-ad-slot="9350842661"
+           data-ad-format="auto"
+           data-full-width-responsive="true">
+      </ins>
+    </div>
 
     <main class="main-content">
       <!-- 左側廣告 -->
@@ -76,10 +77,11 @@
         <router-link to="/privacy">隱私權政策</router-link> | 
         <router-link to="/terms">使用條款</router-link> | 
         <router-link to="/knowledge">貸款知識</router-link> | 
-        <router-link to="/articles">專欄導覽</router-link>
+        <router-link to="/articles">專欄導覽</router-link> | 
+        <router-link to="/glossary">貸款百科</router-link>
       </p>
       <div style="font-size: 0.8rem; margin-top: 5px; color: #888;">
-        台北市信義區信義路五段7號 | 投資一定有風險，申辦貸款前請詳閱公開說明書
+        © 2026 免費貸款計算機 | 理性理財，量入為出
       </div>
     </footer>
   </div>

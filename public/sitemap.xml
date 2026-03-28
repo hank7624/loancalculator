@@ -2,829 +2,271 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://loancalc.com.tw/</loc>
-    <lastmod>2025-11-10</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/credit.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/credit</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/mortgage.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/mortgage</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/rates.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/rates</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/articles</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/glossary</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/about</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/privacy</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/terms</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/knowledge</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/articles/1017-2026年房貸市場趨勢分析升息循環結束了嗎.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/articles/1018-數位銀行信貸-vs-傳統銀行誰的利率真正最低.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-10</lastmod>
+    <loc>https://loancalc.com.tw/articles/1019-青年安心成家房貸-20新政策對首購族的具體影響.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://loancalc.com.tw/articles/1020-二胎房貸風險大揭密合法管道與地下錢莊的區別.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://loancalc.com.tw/articles/1021-如何修復信用破產從聯徵紀錄到重新辦卡的完整路徑.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://loancalc.com.tw/articles/1022-小資族購屋基金規劃月薪三萬如何規劃第一筆頭期款.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://loancalc.com.tw/articles/1023-車貸轉貸划算嗎計算手續費與利息差的黃金公式.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://loancalc.com.tw/articles/1024-房屋增貸用途限制買股買房裝潢的法規紅線.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1006-房貸介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://loancalc.com.tw/articles/1025-保人被追債怎麼辦法律上的先訴抗辯權與求償權.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://loancalc.com.tw/articles/1026-學貸延期申請全攻略收入門檻與應備文件清單.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1006-房貸介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1006-房貸介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1006-房貸介紹與申辦管道指南.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://loancalc.com.tw/articles/1027-以房養老優缺點分析退休族將不動產變現金流的選擇.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1007-信用評分如何提升5個關鍵招術養出高分.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1008-負債整合-vs-債務協商哪種適合我.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://loancalc.com.tw/articles/1028-央行打炒房政策展望未來半年貸款條件會變嚴嗎.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://loancalc.com.tw/articles/1029-債務更生與清算流程當還款壓力超過極限的最後防線.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1009-轉貸與增貸房貸族靈活運用資金的密技.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1010-新車貸款-vs-中古車貸款利率額度與陷阱比較.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://loancalc.com.tw/articles/1030-信用卡預借現金與分期付款對信用分數的致命影響.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1011-借錢投資可以嗎槓桿投資的風險與評估.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://loancalc.com.tw/articles/1031-銀行不告訴你的審核內規職業年資與公司規模的潛規則.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1012-房貸寬限期是毒藥還是解藥深度優缺點解析.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1013-保證人-vs-共同借款人當心作保變欠債.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1014-學貸還不完學貸還款策略與延期申請懶人包.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1015-房貸繳不出來怎麼辦3步驟自救避免房子被法拍.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1016-以房養老是什麼退休族將不動產變現金流的選擇.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1006-房貸介紹與申辦管道指南.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1002-利率連六凍房市管制續觀察房貸風險與負擔率關注.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1004-2025首購族房貸重點新青安與一般房貸全攻略.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1001-央行第3季議紀重點利率續凍房市管制維持觀察.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1007-信用評分如何提升5個關鍵招術養出高分.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1008-負債整合-vs-債務協商哪種適合我.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1009-轉貸與增貸房貸族靈活運用資金的密技.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1010-新車貸款-vs-中古車貸款利率額度與陷阱比較.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1011-借錢投資可以嗎槓桿投資的風險與評估.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1003-2025年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1012-房貸寬限期是毒藥還是解藥深度優缺點解析.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1013-保證人-vs-共同借款人當心作保變欠債.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1005-汽車貸款介紹與申辦管道指南.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1014-學貸還不完學貸還款策略與延期申請懶人包.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1015-房貸繳不出來怎麼辦3步驟自救避免房子被法拍.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1016-以房養老是什麼退休族將不動產變現金流的選擇.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/1-央行宣布升息半碼一文看決策重點.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/2-央行升息與降息對貸款族的影響有哪些.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/3-2024年房貸利率趨勢分析與預測.html</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://loancalc.com.tw/articles/4-信貸申請指南貸款條件有哪些.html</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
