@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       if (nitroConfig.dev) { return }
       
       // 動態讀取文章列表並加入預渲染
-      const dataFilePath = path.resolve(__dirname, 'assets/articles-home-data.js')
+      const dataFilePath = path.resolve(process.cwd(), 'assets/articles-home-data.js')
       try {
         const fileContent = fs.readFileSync(dataFilePath, 'utf-8')
         // 簡單解析 JS 陣列
