@@ -34,7 +34,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRoute } from 'nuxt/app'
 import articlesData from '~/assets/articles-home-data.js'
 
 const route = useRoute()
