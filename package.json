@@ -9,6 +9,6 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "nuxt": "^3.11.0"
+    "nuxt": "^3.13.0"
   }
 }
