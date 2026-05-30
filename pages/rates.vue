@@ -246,7 +246,17 @@ export default {
       return result
     }
 
-    
+     const getChangeClass = (change) => {
+       if (change > 0) return 'up'
+       if (change < 0) return 'down'
+       return 'flat'
+     }
+
+     const formatChange = (change) => {
+       if (change === null || change === undefined) return '-'
+       const sign = change > 0 ? '+' : ''
+       return `${sign}${change.toFixed(2)}%`
+     }
 
     // 监听器
     watch([selectedLoanType, sortOrder], () => {
@@ -264,7 +274,11 @@ export default {
          updateRates,
          getRateBarWidth,
          getTypeClass,
-         formatAmount
+         formatAmount,
+         getChangeClass,
+         formatChange,
+         latestUpdate,
+         rateChangeStats
        }
   }
 }

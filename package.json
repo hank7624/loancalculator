@@ -8,10 +8,6 @@
     "build": "nuxt generate",
     "preview": "nuxt preview"
   },
-  "dependencies": {
-    "vue": "^3.3.4",
-    "vue-router": "^4.6.4"
-  },
   "devDependencies": {
     "nuxt": "^3.11.0"
   }
